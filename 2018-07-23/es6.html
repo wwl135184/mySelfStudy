@@ -5,13 +5,88 @@
 	<title>Document</title>
 </head>
 <body>
-	<script>
+	<script type="text/javaScript">
 		//箭头函数
-		var exercise = function () {
+		var exerciseOne = function () {
 			return 100;
 		}
 
-		var exercise = () = () => 100; 
+		var exerciseTwo = () => 100;
+
+		let arr = ["apple", "banana", "orange"];
+		let  exerciseThree = arr.map(fruit => {
+			console.log(fruit + 's');
+		})
+		//this指向
+		function exerciseFour() {
+			const _this = this;
+			this.num = 0;
+			/*setInterval(function exerciseFive() {
+				console.log(_this.num++);
+			}, 1000)*/
+		}
+		let numExchange = new exerciseFour();
+		//Spread / Rest 操作符
+		//spread
+		function foo(x,y,z) {
+			console.log(x,y,z);
+		}
+		let arr1 =[1, 2, 3];
+		foo(...arr1);
+
+		//rest
+		function age(...ages) {
+			console.log(...ages);
+		}
+		age(1,2,3,4,5);
+
+		//对象词法扩展
+		function getCar(make, model, value) {
+			console.log({
+				make,
+				model,
+				value
+			})
+		}
+		getCar('name', 'model', 5000);
+		//二进制与八进制字面量
+		let oValue = 0o10;
+		console.log(oValue);
+		let bValue = 0b0101;
+		console.log(bValue);
+		//对象和数组解构
+		function foo() {
+			return [1, 2, 3];
+		}
+		let arr2 = foo();
+		console.log(arr2);
+		let [a, b, c] = foo();
+		console.log(a, b, c);
+
+		function bar () {
+			return {
+				x: 4,
+				y: 5,
+				z: 6
+			}
+		}
+
+		let {x: x, y: y, z: z} = bar();
+		console.log(x, y, z);
+		//对象超类
+		let parent = {
+			foo () {
+				console.log("hello world");
+			}
+		}
+		let children = {
+			foo() {
+				super.foo();
+				console.log("children move");
+			}
+		}
+		Object.setPrototypeOf(children, parent);
+		children.foo();
 	</script>
 </body>
 </html>
