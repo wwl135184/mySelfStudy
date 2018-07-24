@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javaScript">
+		//for...of 用于遍历的一个迭代器 数组
+		let arr = ['one', 'two', 'three'];
+		for(let arrName of arr) {
+			console.log(arrName); //one, two, three
+		}
+		//for...in 用来遍历对象中的属性
+		let arr2 = [{
+			'one': 'oneName'
+		}, {
+			'two': 'twoName'
+		}, {
+			'three': 'threeName'
+		}];
+		for(let arrNum in arr2) {
+			console.log(arr2[arrNum]);	
+		}
+		var obj = {'one': 'oneName', 'two': 'twoName', 'three': 'threeName'};
+		for(let objName in obj) {
+			console.log(obj[objName]); //oneName, twoName, threeName
+		}
+
+		//Map和WeakMap
+		let myMap = new Map();
+		var keyString = 'a string',
+			keyObj = {},
+			keyFunc = function () {};
+		myMap.set(keyString, "value 与 'a string' 的关联");
+		myMap.set(keyObj, "value 与 objString 的关联");
+		myMap.set(keyFunc, "value 与 keyFunc 的关联");
+		console.log(myMap.get(keyString));
+		console.log(myMap.get(keyObj));
+		console.log(myMap.get(keyFunc));
+	</script>
+</body>
+</html>
