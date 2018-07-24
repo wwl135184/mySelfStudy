@@ -38,6 +38,66 @@
 		console.log(myMap.get(keyString));
 		console.log(myMap.get(keyObj));
 		console.log(myMap.get(keyFunc));
+		//WeakMap
+		let w = new WeakMap();
+		let o1 = {},
+			o = {},
+			o2 = function () {},
+			o3 = window;
+
+		w.set(o, 'o');
+		console.log(w.get(o));
+		w.set(o1, 37);
+		w.set(o2, 'o2Name');
+		w.set(o3, undefined);
+
+		w.get(o3);
+		console.log(w.get(o3)); //undefined
+
+		w.has(o1);
+		w.delete(o1);
+		w.has(o1);
+		console.log(w.has(o1)); //false
+
+		//Set
+		let mySet = new Set([1, 1, 2, 3, 3, 4]);
+		console.log(mySet.size);
+		console.log(mySet.has(1));
+		console.log(mySet.add('strings'));
+		console.log(mySet.add({a: 1, b: 2}));
+		mySet.clear();
+		console.log(mySet.has(1));
+
+		//WeakSet
+		let ws = new WeakSet();
+
+		let obj1 = {};
+		let foo1 = {};
+
+		ws.add(obj1);
+		ws.add(window);
+		console.log(ws.has(foo1)); //false
+
+		ws.delete(window);
+		console.log(ws.has(window)); //false
+
+		//类
+		class Task {
+			constructor() {
+				console.log('task');
+			}
+
+			showId() {
+				console.log(23);
+			}
+			static loadAll() {
+				console.log("Loading all tasks...")
+			}
+		}
+		let task = new Task();
+		task.showId();
+		console.log(typeof Task);
+		Task.loadAll();
 	</script>
 </body>
 </html>
