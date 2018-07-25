@@ -66,22 +66,35 @@
 		console.log(num.next()); //{value: 1, done: false}
 		console.log(num.next()); //{value: 2, done: false}
 
-		//Promises
-		let p = new Promise(function(resolve,reject) {
-			if (/* condition */) {
-		    // fulfilled successfully
-		    resolve(/* value */);  
-		  } else {
-		    // error, rejected
-		    reject(/* reason */);  
-		  }
-		});
-		p.then(val) => {
-			console.log('Promise Resolved', val);
+		//Promise对象
+		//ajax实例
+		const getJSON = function(url) {
+			const promise = new Promise(function(resolve, reject) {
+				const handler = function() {
+					if(this.readyState !== 4) {
+						return;
+					}
+					if(this.status == 200) {
+						resolve(this.response);
+					} else {
+						reject(new Error(this.statusText));
+					}
+				}
+				const client = new XMLHttpRequest();
+				client.open('GET', url);
+				client.onreadystatechange = handler;
+				client.responseType = 'json';
+				client.setRequestHeader('Accept', 'appilcation/json');
+				client.send();
+			});
+			return promise;
 		}
-		p.then(err) => {
-			console.log('Promise Rejected', err);
-		}
+		getJSON('https://restapi.amap.com/v3/weather/weatherInfo?key=7967698a8eb4ab23ae264211109de2de&city=110100')
+		.then(json => {
+			console.log(json);
+		}, error => {
+			console.log('出错了', error);
+		})
 	</script>
 </body>
 </html>
