@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javaScript">
+		//类的继承和超集
+		class Car {
+			constructor() {
+				console.log('Creating a new Car');
+			}
+		}
+		
+		class Porsche extends Car {
+			constructor() {
+				super();
+				console.log('Creating Porsche');
+			}
+		}
+
+		let c = new Porsche();
+
+		class Point {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+			toString() {
+				console.log ('(' + this.x + ',' + this.y + ')');
+			}
+		}
+		let p = new Point(2, 3);
+		p.toString();
+		console.log(p.hasOwnProperty('x')); //true
+		console.log(p.hasOwnProperty('y')); //true
+
+		//Symbol
+		const sym = Symbol("some optional description");
+		console.log(typeof sym); //symbol
+
+		let o = {
+			val: 10,
+			[Symbol('random')]: 'I am symbol',
+		}
+		console.log(Object.getOwnPropertyNames(o));
+		console.log(Object.getOwnPropertySymbols(o));
+
+		//迭代器
+		let arr =[1, 2, 3];
+		const itr = arr[Symbol.iterator]();
+		console.log(itr.next()); //{value: 1, done: false}
+		console.log(itr.next()); //{value: 2, done: false}
+		console.log(itr.next()); //{value: 3, done: false}
+		console.log(itr.next()); //{value: undefined, done: false}
+
+		//Generator
+		function *Num() {
+			let n = 1;
+			while(n) {
+				yield n++;
+			}
+		}
+		const num = Num();
+		console.log(num.next()); //{value: 1, done: false}
+		console.log(num.next()); //{value: 2, done: false}
+
+		//Promises
+		let p = new Promise(function(resolve,reject) {
+			if (/* condition */) {
+		    // fulfilled successfully
+		    resolve(/* value */);  
+		  } else {
+		    // error, rejected
+		    reject(/* reason */);  
+		  }
+		});
+		p.then(val) => {
+			console.log('Promise Resolved', val);
+		}
+		p.then(err) => {
+			console.log('Promise Rejected', err);
+		}
+	</script>
+</body>
+</html>
