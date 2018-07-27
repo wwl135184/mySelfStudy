@@ -8,8 +8,120 @@
 </head>
 <body>
 	<script type="text/javascript">
-		//Promaise对象
+		//Promaise对象 esercise
+		const getJson = (url) => {
+			const promise = new Promise((resolve, reject) => {
+				const handler = function() {
+					if(this.readyState !== 4) {
+						return;
+					}
+					if(this.status == 200) {
+						resolve(this.response);
+					} else {
+						reject(new Error(this.statusText));
+					}
+				}
+				const client = new XMLHttpRequest();
+				client.open('GET', url);
+				client.onreadystatechange = handler;
+				client.responseType = 'json';
+				client.setRequestHeader('Accept', 'appilcation/json');
+				client.send();
+			});
+			return promise;
+		}
+		getJson('https://restapi.amap.com/v3/weather/weatherInfo?key=7967698a8eb4ab23ae264211109de2de&city=110100')
+		.then(json => {
+			console.log(json);
+		}, error => {
+			console.log(error);
+		})
 		
+		//let
+		{
+			var a = 1;
+			let b = 2;
+			console.log(b);
+		}
+		
+		console.log(a); //1
+		//console.log(b); //b is not defined
+		
+		//for 父级与子级作用域
+		for(let i = 0; i < 3; i++) {
+			let i = 'abc';
+			console.log(i);
+		}
+		//不存在变量提升
+		console.log(foo); //undefined
+		var foo = 2;
+		
+		//console.log(bar); // bar is not defined
+		let bar = 2;
+		
+		//暂时性死区
+		var tmp = 123;
+		if(true) {
+			tmp = 'abc'; //tmp is not defined
+			//let tmp;
+		}
+		
+		if(true) {
+			//num = 'abc'; //num is not defined
+			//console.log(num);
+			
+			let num;
+			console.log(num); //undefined 
+			
+			num = 123;
+			console.log(num); //123
+		}
+		
+		function func (arg) {
+			let arg; //报错
+		}
+		function func (arg) {
+			{
+				let arg;
+			}
+		}
+		
+		//块级作用域
+		var date = new Date();
+		function f() {
+			console.log(date);
+			if(false) {
+				var date = 'hello world'
+			}
+		}
+		f();
+		
+		//ES6的块级作用域
+		function f1() {
+			let n = 5;
+			if(true) {
+				let n = 10;
+			}
+			console.log(n);
+		}
+		f1();
+		
+		function f2() {
+			console.log("I am outside!");
+		}
+		
+		(function f3() {
+			if(true) {
+				function f2() {
+					console.log("I am inside!");
+				}
+			}
+			f2();
+		}());
+		
+		const p = 3;
+		//p = 4;
+		console.log(p); //报错
 	</script>
 </body>
 </html>
