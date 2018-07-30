@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>study</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//顶层对象
+			var a = 1;
+			console.log(window.a); //1
+			let b = 2;
+			console.log(window.b); //undefined
+			//数组的解构赋值
+			let [c, d, e] = [1, 2, 3];
+			let [head, ...tail] = [1, 2, 3, 4];
+			console.log(tail); //2, 3, 4
+			let [x, y, ...z] = ['g'];
+			console.log(y); //undefined
+			console.log(z); //[]
+			let [h, i] = [1, 2, 3];
+			console.log(h);	
+			//let [foo] = true; //报错
+			let [foo = true] = [];
+			console.log(foo);
+			let [j, k = 'a'] = [1, undefined];
+			console.log(k);
+			let [l = 'b'] = [null];
+			console.log(l);
+			function f() {
+				console.log('aaa');
+			}
+			let [m = f()] = [1];
+			console.log(m);
+			//let [x = y, y = 1] = []; //报错
+			//对象解构
+			let {fo, bar} = {fo: 'aaa', bar: 'bbb'};
+			console.log(fo);
+			let {foz: baz} = {foo: 'aaa', baz: 'bbb'};
+			console.log(baz);
+			//console.log(foz); //undefined
+			//嵌套赋值
+			let obj = {};
+			let arr = [];
+			({ fox: obj.prop, bar: arr[0] } = { fox: 123, bar: true });
+			console.log(obj); //{prop: 123}
+			console.log(arr); //[true]
+		</script>
+	</body>
+</html>
