@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>study</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//对象的解构
+			let obj = {
+				p: [
+					'hello',
+					{y: 'World'}
+				]
+			};
+			let {p, p: [x, {y}]} = obj;
+			console.log(x);
+			console.log(y);
+			console.log(p);
+			
+			let node = {
+				loc: {
+					start: {
+						line: 1,
+						column: 5
+					}
+				}
+			};
+			
+			let {loc, loc: {start}, loc: {start: {line}}} = node;
+			console.log(line);
+			console.log(start);
+			console.log(loc);
+			
+			let {z = 3} = {z: null};
+			console.log(z); //null
+			let {a = 2} = {a: undefined};
+			console.log(a); //2
+			
+			let {sin, cos, log} = Math;
+			
+			//字符串的赋值
+			const [b, c, d, e] = 'hello';
+			console.log(b);
+			let {length: len} = 'hello';
+			console.log(len);
+			
+			//数值和布尔值的解构赋值
+			let {toString: s} = 123;
+			console.log(s === Number.prototype.toString);
+			
+			let {toString: w} = true;
+			console.log(w === Boolean.prototype.toString);
+			
+			//函数参数的解构赋值
+			function add([x, y]) {
+				console.log(x + y);
+			}
+			add([1, 2]);
+			
+			console.log([[1, 2], [3, 4]].map(([a, b]) => a + b));
+			
+			function move({u, v} = {u: 0, v: 0}) {
+				console.log(u, v);
+			}
+			move({u: 3, v: 4}); //3, 4
+			move(); //0, 0	
+			move({}); //undefined undefined
+			
+		</script>
+	</body> 
+</html>

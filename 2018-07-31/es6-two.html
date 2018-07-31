@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>study</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//用途
+			//交换变量的值
+			let x = 1;
+			let y = 2;
+			[x, y] = [y, x];
+			console.log(x, y);
+			//从函数返回多个值
+			function example() {
+				return [1, 2, 3];
+			}
+			let [a, b, c] = example();
+			console.log(a, b, c);
+			
+			function exampleTwo () {
+				return {
+					foo: 1,
+					bar: 2
+				}
+			}
+			let {foo: baz, bar: foo} = exampleTwo();
+			console.log(foo, baz);
+			
+			let jsonData = {
+				id: 1,
+				status: 'ok',
+				data: [222, 333]
+			}
+			let {id, status, data} = jsonData;
+			console.log(id, status, data);
+			
+			//遍历Map解构
+			let map = new Map();
+				map.set('hello', 'world');
+				map.set('first', 'two');
+			for (let [key, value] of map) {
+				console.log(key + ' ' + 'is' + ' ' + value);
+			}
+		</script>
+	</body>
+</html>
